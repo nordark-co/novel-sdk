@@ -14,7 +14,7 @@ const UploadImagesPlugin = () =>
       },
       apply(tr, set) {
         set = set.map(tr.mapping, tr.doc);
-        // See if the transaction adds or removes any placeholders
+        // @ts-ignore See if the transaction adds or removes any placeholders
         const action = tr.getMeta(this);
         if (action && action.add) {
           const { id, pos, src } = action.add;
@@ -28,7 +28,7 @@ const UploadImagesPlugin = () =>
           );
           image.src = src;
           placeholder.appendChild(image);
-          const deco = Decoration.widget(pos + 1, placeholder, {
+          const deco = Decoration.widget(pos, placeholder, {
             id,
           });
           set = set.add(tr.doc, [deco]);
